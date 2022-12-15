@@ -5,7 +5,7 @@ import requests
 
 
 def login_request(username, password):
-    url = "http://127.0.0.1:8000/api/student-login"
+    url = "http://127.0.0.1:8000/api/user-login"
 
     payload={'username': username,
     'password': password}
@@ -20,7 +20,7 @@ def login_request(username, password):
 
 
 def register_request(username, password, email):
-    url = "http://127.0.0.1:8000/api/student/"
+    url = "http://127.0.0.1:8000/api/user/"
 
     payload={'username': username,
     'password': password,
