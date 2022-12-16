@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.http import JsonResponse
+import json
 
 # coverage run -m pytest
 # coverage report
@@ -38,6 +39,29 @@ def register_function(username, password, email, response):
         return 0
     return 1
 
+
+def matchs_function(logged_state, datain):
+    if logged_state == False:
+        print("You have to log in first")
+        return 1
+
+    commands = ["final", "third_place", "semi_final", "quarter_final", "round_of_16", "first_stage"] 
+    print("Results available : \n\t{}\n\t{}\n\t{}\n\t{}\n\t{}\n\t{}".format(commands[0], commands[1], commands[2], commands[3], commands[4], commands[5]))
+    command_wanted = ""
+
+    while (command_wanted == ""):
+        data = datain
+        if len(data) > 20:
+            print("try again or exit")
+        if data == "exit":
+            break
+        for command in commands :
+            if data == command:
+                command_wanted = command
+                break
+
+
+    return 0
 
 # Create your tests here.
 
@@ -78,3 +102,10 @@ def test_register_function_bad_password():
 
 def test_register_function_bad_email():
     assert register_function("Julien", "admin", "mail.com", "false") == 1
+
+
+def test_match_function_success():
+    assert matchs_function(True, "final") == 0
+
+def test_match_function_not_log_in():
+    assert matchs_function(False, "final") == 1

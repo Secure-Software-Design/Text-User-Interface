@@ -67,16 +67,11 @@ def matchs_function():
                 command_wanted = command
                 break
 
-    
     data = matchs_request()
     try:
         a = json.loads(data)
-        print(command_wanted)
-
         for match in a[command_wanted]:
             print(match["team1"], " VS ", match["team2"], "\t Score : ", match["goal_team1"], ':', match["goal_team2"], match["date_time"])
-
-
     except:
         print("Internal error")
 
